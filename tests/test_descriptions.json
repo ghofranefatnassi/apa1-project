@@ -1,0 +1,21 @@
+[
+  {"id": "A1", "pattern": "A", "description": "Quand je recois un email avec une facture, cree un enregistrement dans l'ERP."},
+  {"id": "A2", "pattern": "A", "description": "A chaque nouvel email dans ma boite, ajoute une ligne dans l'ERP avec l'expediteur et le sujet."},
+  {"id": "A3", "pattern": "A", "description": "Si un email arrive avec le mot 'devis' dans le sujet, cree un enregistrement correspondant dans l'ERP."},
+
+  {"id": "B1", "pattern": "B", "description": "Quand un client remplit le formulaire de contact, cree une fiche client dans l'ERP."},
+  {"id": "B2", "pattern": "B", "description": "A chaque soumission du formulaire d'inscription sur le site, ajoute un nouveau prospect dans l'ERP."},
+  {"id": "B3", "pattern": "B", "description": "Cree un enregistrement dans l'ERP a partir des donnees recues via un webhook externe."},
+
+  {"id": "C1", "pattern": "C", "description": "Envoie une notification Slack chaque fois qu'une commande est creee."},
+  {"id": "C2", "pattern": "C", "description": "Previens l'equipe par Slack des qu'un nouvel enregistrement est ajoute dans l'ERP."},
+  {"id": "C3", "pattern": "C", "description": "A chaque nouvelle commande dans l'ERP, envoie un message sur le canal Slack des ventes."},
+
+  {"id": "D1", "pattern": "D", "description": "Chaque lundi matin, envoie-moi un resume des commandes de la semaine."},
+  {"id": "D2", "pattern": "D", "description": "Tous les jours a 8h, extrait les donnees de l'ERP et envoie-moi un rapport par email."},
+  {"id": "D3", "pattern": "D", "description": "Une fois par semaine, genere un resume des ventes et envoie-le par email a la direction."},
+
+  {"id": "X1", "pattern": "out_of_scope", "description": "Quand une commande est payee, mets a jour son statut dans un second systeme."},
+  {"id": "X2", "pattern": "out_of_scope", "description": "Recupere un fichier PDF depuis un email et stocke-le dans un dossier partage."},
+  {"id": "X3", "pattern": "out_of_scope", "description": "Genere automatiquement une facture PDF et envoie-la au client."}
+]

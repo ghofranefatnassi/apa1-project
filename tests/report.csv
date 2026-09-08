@@ -1,0 +1,16 @@
+id,pattern_attendu,description,generation_ok,validation_ok,stage_echec,detail
+A1,A,"Quand je recois un email avec une facture, cree un enregistrement dans l'ERP.",True,True,,Workflow valide et teste avec succes
+A2,A,"A chaque nouvel email dans ma boite, ajoute une ligne dans l'ERP avec l'expediteur et le sujet.",True,True,,Workflow valide et teste avec succes
+A3,A,"Si un email arrive avec le mot 'devis' dans le sujet, cree un enregistrement correspondant dans l'ERP.",True,True,,Workflow valide et teste avec succes
+B1,B,"Quand un client remplit le formulaire de contact, cree une fiche client dans l'ERP.",True,True,,Workflow valide et teste avec succes
+B2,B,"A chaque soumission du formulaire d'inscription sur le site, ajoute un nouveau prospect dans l'ERP.",True,True,,Workflow valide et teste avec succes
+B3,B,Cree un enregistrement dans l'ERP a partir des donnees recues via un webhook externe.,True,True,,Workflow valide et teste avec succes
+C1,C,Envoie une notification Slack chaque fois qu'une commande est creee.,True,True,,Workflow valide et teste avec succes
+C2,C,Previens l'equipe par Slack des qu'un nouvel enregistrement est ajoute dans l'ERP.,True,True,,Workflow valide et teste avec succes
+C3,C,"A chaque nouvelle commande dans l'ERP, envoie un message sur le canal Slack des ventes.",True,True,,Workflow valide et teste avec succes
+D1,D,"Chaque lundi matin, envoie-moi un resume des commandes de la semaine.",True,True,,Workflow valide et teste avec succes
+D2,D,"Tous les jours a 8h, extrait les donnees de l'ERP et envoie-moi un rapport par email.",True,True,,Workflow valide et teste avec succes
+D3,D,"Une fois par semaine, genere un resume des ventes et envoie-le par email a la direction.",True,True,,Workflow valide et teste avec succes
+X1,out_of_scope,"Quand une commande est payee, mets a jour son statut dans un second systeme.",True,True,,Hors-perimetre correctement detecte
+X2,out_of_scope,Recupere un fichier PDF depuis un email et stocke-le dans un dossier partage.,True,True,,Hors-perimetre correctement detecte
+X3,out_of_scope,Genere automatiquement une facture PDF et envoie-la au client.,True,True,,Hors-perimetre correctement detecte

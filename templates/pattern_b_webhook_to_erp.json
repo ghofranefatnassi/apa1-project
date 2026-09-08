@@ -1,0 +1,93 @@
+{
+  "name": "Webhook -> Creation enregistrement ERP",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "new-lead",
+        "responseMode": "onReceived",
+        "options": {}
+      },
+      "id": "trigger-1",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "mode": "manual",
+        "assignments": {
+          "assignments": [
+            {
+              "id": "1",
+              "name": "customer_name",
+              "value": "={{$json[\"body\"][\"name\"]}}",
+              "type": "string"
+            },
+            {
+              "id": "2",
+              "name": "customer_email",
+              "value": "={{$json[\"body\"][\"email\"]}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "transform-1",
+      "name": "Map Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [500, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.ERP_BASE_URL}}/api/resource/Customer",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"customer_name\": \"{{$json[\"customer_name\"]}}\",\n  \"email\": \"{{$json[\"customer_email\"]}}\"\n}",
+        "options": {}
+      },
+      "id": "action-1",
+      "name": "Create ERP Record",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [750, 300]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Map Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Map Fields": {
+      "main": [
+        [
+          {
+            "node": "Create ERP Record",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": {
+    "pattern_id": "B",
+    "description_fr": "Quand un client remplit le formulaire de contact, cree une fiche client dans l'ERP."
+  }
+}

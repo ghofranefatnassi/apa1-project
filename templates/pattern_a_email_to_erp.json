@@ -1,0 +1,60 @@
+{
+  "name": "Email -> Creation enregistrement ERP",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "mailbox": "INBOX",
+        "options": {}
+      },
+      "id": "trigger-1",
+      "name": "Email Trigger (IMAP)",
+      "type": "n8n-nodes-base.emailReadImap",
+      "typeVersion": 2,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.ERP_BASE_URL}}/api/resource/{{$json[\"resource_type\"] || \"Document\"}}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"subject\": \"{{$json[\"subject\"]}}\",\n  \"from\": \"{{$json[\"from\"]}}\",\n  \"body\": \"{{$json[\"textPlain\"]}}\"\n}",
+        "options": {}
+      },
+      "id": "action-1",
+      "name": "Create ERP Record",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [500, 300]
+    }
+  ],
+  "connections": {
+    "Email Trigger (IMAP)": {
+      "main": [
+        [
+          {
+            "node": "Create ERP Record",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": {
+    "pattern_id": "A",
+    "description_fr": "Quand je recois un email avec une facture, cree un enregistrement dans l'ERP."
+  }
+}
